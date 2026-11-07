@@ -74,7 +74,7 @@ export default function App() {
   function handleCardClick(id) {
     // If card already clicked, game restarts
     if (clicked.has(id)) {
-      setMessage("Oops! You already clicked that card. Game restarts.");
+      setMessage("이런! 이미 클릭한 카드입니다. 게임을 다시 시작합니다.");
       // Update best score if necessary
       setBestScore((prev) => {
         const nb = Math.max(prev, currentScore);
@@ -124,7 +124,7 @@ export default function App() {
     setShowCongrats(false);
     setClicked(new Set());
     setCurrentScore(0);
-    setMessage("Nice! Try to beat your Best Score.");
+    setMessage("좋았어! 최고 점수에 도전해 보세요.");
     setCards((prev) => shuffleArray(prev));
   }
 
@@ -149,7 +149,7 @@ export default function App() {
             color: "var(--muted)",
           }}
         >
-          Loading cards...
+          카드 가져오는 중...
         </div>
       ) : (
         <main>
@@ -163,14 +163,14 @@ export default function App() {
 
       {/* Congratulatory modal */}
       <Modal show={showCongrats} onClose={closeCongrats}>
-        <h2>🎉 Congratulations!</h2>
+        <h2>🎉 축하합니다!</h2>
         <p style={{ marginTop: 8 }}>
-          You clicked every card without repeating — perfect round. Your score:{" "}
+          실수 없이 모든 카드를 선택했습니다. — 완벽합니다. 점수:{" "}
           {cards.length}
         </p>
       </Modal>
 
-      <div className="footer-note">Images fetched from the public PokeAPI.</div>
+      <div className="footer-note"> 출처 - PokeAPI.</div>
     </div>
   );
 }
