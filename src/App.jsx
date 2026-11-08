@@ -132,7 +132,7 @@ export default function App() {
     setShowCongrats(false);
     setClicked(new Set());
     setCurrentScore(0);
-    setMessage("좋았어! 최고 점수에 도전해 보세요.");
+    setMessage("대단해요! 다시 도전해 보세요.");
     setCards((prev) => shuffleArray(prev));
   }
 
