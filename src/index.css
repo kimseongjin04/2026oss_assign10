@@ -87,7 +87,7 @@ body {
   display: grid;
   gap: 16px;
   margin-top: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .card {
@@ -108,13 +108,13 @@ body {
   box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6);
 }
 .card img {
-  width: 72px;
-  height: 72px;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
 }
 .card .name {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* modal */
