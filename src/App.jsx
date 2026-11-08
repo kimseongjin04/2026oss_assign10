@@ -27,6 +27,7 @@ export default function App() {
   const [message, setMessage] = useState("");
   // State to trigger congratulations modal
   const [showCongrats, setShowCongrats] = useState(false);
+  const [showGameOver, setShowGameOver] = useState(false); 
 
   // Fetch cards from API when component mounts
   useEffect(() => {
@@ -82,7 +83,7 @@ export default function App() {
   function handleCardClick(id) {
     // If card already clicked, game restarts
     if (clicked.has(id)) {
-      setMessage("이런! 이미 클릭한 카드입니다. 게임을 다시 시작합니다.");
+      setShowGameOver(true); 
       // Update best score if necessary
       setBestScore((prev) => {
         const nb = Math.max(prev, currentScore);
@@ -136,6 +137,10 @@ export default function App() {
     setCards((prev) => shuffleArray(prev));
   }
 
+  function closeGameOver() {
+    setShowGameOver(false);
+  }
+
   return (
     <div className="container">
       {/* Header with scores and reset button */}
@@ -175,6 +180,13 @@ export default function App() {
         <p style={{ marginTop: 8 }}>
           실수 없이 모든 카드를 선택했습니다. — 완벽합니다. 점수:{" "}
           {cards.length}
+        </p>
+      </Modal>
+
+      <Modal show={showGameOver} onClose={closeGameOver}>
+        <h2>게임 오버!</h2>
+        <p style={{ marginTop: 8 }}>
+          이런! 이미 클릭한 카드입니다. 게임을 다시 시작합니다.
         </p>
       </Modal>
 
