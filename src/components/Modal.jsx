@@ -8,7 +8,7 @@ export default function Modal({ show, onClose, children }) {
         {children}
         <div className="actions">
           <button className="btn" onClick={onClose}>
-            continue
+            이어하기
           </button>
         </div>
       </div>
