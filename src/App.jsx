@@ -41,15 +41,23 @@ export default function App() {
       if (!res.ok) throw new Error("Network error");
       const data = await res.json();
       // Map results to card objects with id, name, and image
-      const items = data.results.map((r) => {
+      const items = await Promise.all(
+        data.results.map(async (r) => {
         const parts = r.url.split("/").filter(Boolean);
         const id = parts[parts.length - 1];
+
+        const speciesRes = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
+        const species = await speciesRes.json();
+        const ko = species.names.find((n) => n.language.name === "ko");
+        
+        
         return {
           id: Number(id),
-          name: capitalize(r.name),
+          name: ko ? ko.name : capitalize(r.name),
           image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
-        };
-      });
+          };
+        })
+      ); 
       // Shuffle cards before setting them
       setCards(shuffleArray(items));
     } catch (err) {
